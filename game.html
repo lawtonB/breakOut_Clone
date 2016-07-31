@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html:charset=utf-8" http-equiv="Content-Type">
+</head>
+<body>
+
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script>
+//declare global variables
+    var canvas, canvasContext;
+    // ball x value to change position of ball, 75 because it is in canvas
+    var ballX = 75;
+
+window.onload = function() {
+    canvas = document.getElementById('gameCanvas');
+    canvasContext = canvas.getContext('2d');
+
+    var framesPerSecond = 30;
+    //setInterval repeatedly calls function with a fixed delay between each call
+    setInterval(updateAll, 1000/framesPerSecond);
+}
+    function updateAll() {
+      ballX++;
+      console.log(ballX)
+      //set color of next shape with .fillStyle
+      canvasContext.fillStyle = 'black';
+      //fillRect takes 4 args (x,y from top left corner, width and height of shape)
+      canvasContext.fillRect(0,0, canvas.width, canvas.height);
+      //make a circle
+      canvasContext.fillStyle = 'red';
+      //beginPath() starts a new drawing path
+      canvasContext.beginPath();
+      //.arc to draw a circle (x, y, radius, startAngle, endAngle, anticlockwise?)
+      canvasContext.arc(ballX,100,10,0,Math.PI*2, true);
+      canvasContext.fill()
+    }
+
+</script>
+
+</body>
+</html>
